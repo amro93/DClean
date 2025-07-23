@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DClean.Domain.Enums
 {
-    public enum EStaticFileProvider
+    public enum StaticFileProvider
     {
         Local,
     }

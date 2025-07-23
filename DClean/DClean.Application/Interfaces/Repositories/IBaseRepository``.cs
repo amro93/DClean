@@ -25,7 +25,6 @@ namespace DClean.Application.Interfaces.Repositories
     }
     public interface IBaseRepository<T, TPK> : IBaseRepository<T>
         where T : class, IEntity<TPK>
-        where TPK : IEquatable<TPK>
     {
         
         void Delete(TPK id);

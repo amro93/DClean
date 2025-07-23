@@ -46,8 +46,8 @@ namespace DClean.Infrastructure.Persistence
             }
             else
             {
-                services.AddEntityFrameworkMySql();
-                var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
+                //services.AddEntityFrameworkMySql();
+                //var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
 
                 //services.AddDbContextPool<MainDbContext>((serviceProvider, options) =>
                 //{
@@ -70,7 +70,7 @@ namespace DClean.Infrastructure.Persistence
                 //});
                 services.AddTriggeredDbContextPool<DCleanDbContext>(options =>
                 {
-                    options.UseMySql(configuration.GetConnectionString("Default"), serverVersion,
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                         b =>
                         {
                             b.MigrationsAssembly(typeof(DCleanDbContext).Assembly.FullName);

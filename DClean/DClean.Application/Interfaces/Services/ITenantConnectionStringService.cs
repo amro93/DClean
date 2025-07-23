@@ -12,7 +12,7 @@ namespace DClean.Application.Interfaces.Services
 {
     public interface ITenantConnectionStringService
     {
-        public Task<string> GetByTenantIdAsync(Guid tenantId, string name = "Default", CancellationToken cancellationToken = default);
+        public Task<string> GetByTenantIdAsync(Guid tenantId, string name = "DefaultConnection", CancellationToken cancellationToken = default);
         Task DeleteAsync(Guid id);
         public Task<List<TenantConnectionStringDto>> ListAsync(Guid tenantId);
         public Task<Guid> Create(TenantConnectionStringCreateDto dto, CancellationToken cancellationToken = default);

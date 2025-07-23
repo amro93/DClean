@@ -1,6 +1,6 @@
 ﻿namespace DClean.Domain.Enums
 {
-    public enum EPermissionProvider
+    public enum PermissionProvider
     {
         Role,
         User,

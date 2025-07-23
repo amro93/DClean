@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DClean.Domain.Common.BaseEntities;
 using DClean.Domain.Enums;
 using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.SharedEntities
 {
-    public class StaticFileInfo : CreateAuditedEntity<Guid>, IEntity<Guid>, IStaticFileInfo
+    public class StaticFileInfo : ICreateAuditedEntity<Guid?>, IEntity<Guid>, IFileInfo
     {
         public Guid Id { get; set; }
         /// <summary>
@@ -31,6 +30,8 @@ namespace DClean.Infrastructure.Common.SharedEntities
         /// the user who must be elligible to acces this file
         /// </summary>
         //public Guid? UserId { get; set; }
-        public EStaticFileProvider StaticFileProvider { get; set; }
+        public StaticFileProvider StaticFileProvider { get; set; }
+        public Guid? CreatedById { get; set; }
+        public DateTime? CreatedAt { get; set; }
     }   
 }

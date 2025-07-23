@@ -4,7 +4,7 @@ using DClean.Domain.Interfaces;
 namespace DClean.Domain.Common.BaseEntities
 {
     public abstract class SoftDeleteAuditedEntity<TUserPK, TUser> : UpdateAuditedEntity<TUserPK, TUser>, ISoftDeleteAuditedEntity<TUserPK, TUser>
-        where TUserPK : struct
+        where TUserPK : IEquatable<TUserPK>
         where TUser : class
     {
         public bool IsDeleted { get; set; }

@@ -45,7 +45,7 @@ namespace DClean.WebApi.Services
             _configuration = configuration;
             _serviceProvider = serviceProvider;
         }
-        public Guid GetTenantId()
+        public Guid? GetTenantId()
         {
             if (TenantId == null) throw new ArgumentNullException(nameof(TenantId), "tenantId can't be null");
             return TenantId.Value;
@@ -61,7 +61,7 @@ namespace DClean.WebApi.Services
             return tenant.Name;
         }
 
-        public async Task<string> GetConnectionStringAsync(string name = "Default")
+        public async Task<string> GetConnectionStringAsync(string name = "DefaultConnection")
         {
             string connectionStr = null;
             if (TenantId.HasValue)
@@ -111,6 +111,16 @@ namespace DClean.WebApi.Services
         {
             //tenantName = null;
             //_currentTenant.Value.TenantId = null;
+        }
+
+        public Task<IAsyncDisposable> UseAsync(Guid tenantId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDisposable Use(Guid tenantId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

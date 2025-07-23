@@ -8,7 +8,7 @@ using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.DbTriggers
 {
-    public abstract class BaseCreationAuditedEntityTrigger : IBeforeSaveTrigger<ICreateAuditedEntity<Guid>>, IBeforeSaveTrigger<IMayHaveTenant>, IBeforeSaveTrigger<IHaveTenant>
+    public abstract class BaseCreationAuditedEntityTrigger : IBeforeSaveTrigger<ICreateAuditedEntity<Guid?>>, IBeforeSaveTrigger<IMayHaveTenant?>, IBeforeSaveTrigger<IHaveTenant>
     {
         private readonly ICurrentUser _userService;
         private readonly ICurrentTenant _currentTenant;
@@ -24,7 +24,7 @@ namespace DClean.Infrastructure.Common.DbTriggers
         }
 
 
-        public async Task BeforeSave(ITriggerContext<ICreateAuditedEntity<Guid>> context,
+        public async Task BeforeSave(ITriggerContext<ICreateAuditedEntity<Guid?>> context,
             CancellationToken cancellationToken)
         {
             if (context.ChangeType != ChangeType.Added) return;
@@ -41,7 +41,7 @@ namespace DClean.Infrastructure.Common.DbTriggers
         public async Task BeforeSave(ITriggerContext<IHaveTenant> context, CancellationToken cancellationToken)
         {
             if (context.ChangeType != ChangeType.Added) return;
-            context.Entity.TenantId = _currentTenant.GetTenantId();
+            context.Entity.TenantId = _currentTenant.GetTenantId().Value;
         }
     }
 

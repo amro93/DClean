@@ -9,7 +9,7 @@ using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.BaseEntities.Identity
 {
-    public class BaseUser : IdentityUser<Guid>, IFullAuditedEntity<Guid>, IEntity<Guid>, IMayHaveTenant
+    public class BaseUser : IdentityUser<Guid>, IFullAuditedEntity<Guid?>, IEntity<Guid>, IMayHaveTenant
     {
         public BaseUser()
         {
@@ -22,8 +22,8 @@ namespace DClean.Infrastructure.Common.BaseEntities.Identity
         public Guid? CreatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public Guid? UpdatedById { get; set; }
-        public bool IsDeleted { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; }
         public Guid? DeletedById { get; set; }
         public Guid? TenantId { get; set; }
     }

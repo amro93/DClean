@@ -11,7 +11,7 @@ using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.DbTriggers
 {
-    public abstract class BaseUpdateAuditedEntityTrigger : IBeforeSaveTrigger<IUpdateAuditedEntity<Guid>>
+    public abstract class BaseUpdateAuditedEntityTrigger : IBeforeSaveTrigger<IUpdateAuditedEntity<Guid?>>
     {
         private readonly ICurrentUser _currentUser;
         private readonly IDateTimeService _dateTimeService;
@@ -25,7 +25,7 @@ namespace DClean.Infrastructure.Common.DbTriggers
             _dateTimeService = dateTimeService;
             _dbContext = dbContext;
         }
-        public virtual async Task BeforeSave(ITriggerContext<IUpdateAuditedEntity<Guid>> context, CancellationToken cancellationToken)
+        public virtual async Task BeforeSave(ITriggerContext<IUpdateAuditedEntity<Guid?>> context, CancellationToken cancellationToken)
         {
 
             if (context.ChangeType != ChangeType.Modified) return;

@@ -8,7 +8,7 @@ using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.DbTriggers
 {
-    public abstract class BaseSoftDeletableAuditedTrigger : IBeforeSaveTrigger<ISoftDeleteAuditedEntity<Guid>>
+    public abstract class BaseSoftDeletableAuditedTrigger : IBeforeSaveTrigger<ISoftDeleteAuditedEntity<Guid?>>
     {
         private readonly ICurrentUser _authenticatedUser;
 
@@ -16,7 +16,7 @@ namespace DClean.Infrastructure.Common.DbTriggers
         {
             _authenticatedUser = authenticatedUser;
         }
-        public async Task BeforeSave(ITriggerContext<ISoftDeleteAuditedEntity<Guid>> context, CancellationToken cancellationToken)
+        public async Task BeforeSave(ITriggerContext<ISoftDeleteAuditedEntity<Guid?>> context, CancellationToken cancellationToken)
         {
 
             if (context.ChangeType != ChangeType.Modified ||

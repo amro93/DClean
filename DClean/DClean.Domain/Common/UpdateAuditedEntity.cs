@@ -4,7 +4,7 @@ using DClean.Domain.Interfaces;
 namespace DClean.Domain.Common.BaseEntities
 {
     public abstract class UpdateAuditedEntity<TUserPK> : CreateAuditedEntity<TUserPK>, IUpdateAuditedEntity<TUserPK>
-        where TUserPK : struct
+        where TUserPK : IEquatable<TUserPK>
     {
         public TUserPK? UpdatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }

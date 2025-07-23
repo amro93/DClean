@@ -10,7 +10,7 @@ using DClean.Infrastructure.Common.SharedEntities;
 
 namespace DClean.Application.DTOs.StaticFiles
 {
-    public class FileDto : IStaticFileInfo
+    public class FileDto : IFileInfo
     {
         /// <summary>
         /// temp file relative path
@@ -21,7 +21,7 @@ namespace DClean.Application.DTOs.StaticFiles
         public string TempFileName { get; set; }
         public string Extension { get; set; }
         public string FolderPath { get; set; }
-        public EStaticFileProvider StaticFileProvider { get; set; }
+        public StaticFileProvider StaticFileProvider { get; set; }
 
         public FileDto()
         {
@@ -54,7 +54,7 @@ namespace DClean.Application.DTOs.StaticFiles
                 FileName = FileName,
                 Extension = Extension,
                 FolderPath = FolderPath,
-                StaticFileProvider = EStaticFileProvider.Local
+                StaticFileProvider = StaticFileProvider.Local
             };
         }
     }

@@ -5,11 +5,11 @@ using DClean.Domain.Enums;
 
 namespace DClean.Domain.Interfaces
 {
-    public interface IStaticFileInfo : IStaticFileInfo<Guid>
+    public interface IFileInfo : IFileInfo<Guid>
     {
 
     }
-    public interface IStaticFileInfo<TPK> where TPK : struct
+    public interface IFileInfo<TPK> where TPK : IEquatable<TPK>
     {
         public TPK Id { get; set; }
         /// <summary>
@@ -31,6 +31,6 @@ namespace DClean.Domain.Interfaces
         /// the user who must be elligible to acces this file
         /// </summary>
         //public TUserPK? UserId { get; set; }
-        public EStaticFileProvider StaticFileProvider { get; set; }
+        public StaticFileProvider StaticFileProvider { get; set; }
     }
 }

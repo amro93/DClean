@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using DClean.Domain.Common.BaseEntities;
 using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.EntityMapConfigurationExtensions
@@ -18,7 +17,7 @@ namespace DClean.Infrastructure.Common.EntityMapConfigurationExtensions
         }
         public static void ConfigureBaseTypes<TUser>(this EntityTypeBuilder builder)
         {
-            var entiyType = builder.GetType().GetGenericArguments().FirstOrDefault(t => t.IsAssignableFrom(typeof(EntityBase)));
+            var entiyType = builder.GetType().GetGenericArguments().FirstOrDefault(t => t.IsAssignableFrom(typeof(IEntity)));
             if (entiyType == null) return;
             ConfigureBaseTypes<TUser, Guid>(builder, entiyType);
         }
@@ -29,9 +28,10 @@ namespace DClean.Infrastructure.Common.EntityMapConfigurationExtensions
         public static void ConfigureBaseTypes<T, TUser, TUserPK>(this EntityTypeBuilder<T> builder)
             where T : class
             where TUser : class, IEntity
-            where TUserPK : struct
+            where TUserPK : IEquatable<TUserPK>
         {
             var entityType = typeof(T);
+
             if (typeof(ISoftDeleteAuditedEntity<TUserPK, TUser>).IsAssignableFrom(entityType))
             {
                 builder.HasOne(t => ((ISoftDeleteAuditedEntity<TUserPK, TUser>)t).DeletedBy)

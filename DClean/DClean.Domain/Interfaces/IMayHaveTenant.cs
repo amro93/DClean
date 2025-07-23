@@ -3,11 +3,11 @@
 namespace DClean.Domain.Interfaces
 {
     public interface IMayHaveTenant<TenantPK>
-        where TenantPK : struct
+        where TenantPK : allows ref struct
     {
-        public TenantPK? TenantId { get; set; }
+        public TenantPK TenantId { get; set; }
     }
-    public interface IMayHaveTenant : IMayHaveTenant<Guid>
+    public interface IMayHaveTenant : IMayHaveTenant<Guid?>
     {
     }
 }

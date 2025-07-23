@@ -8,7 +8,7 @@ using DClean.Domain.Interfaces;
 
 namespace DClean.Infrastructure.Common.BaseEntities.Identity
 {
-    public class BaseRole : IdentityRole<Guid>, IEntity<Guid>, IMayHaveTenant, IFullAuditedEntity<Guid>
+    public class BaseRole : IdentityRole<Guid>, IEntity<Guid>, IMayHaveTenant, ISoftDeleteEntity
     {
         public BaseRole()
         {
